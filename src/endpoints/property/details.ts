@@ -1,0 +1,437 @@
+import { Level, Endpoint } from '../../types';
+
+export const details: Endpoint = {
+  target: 'details',
+  level: Level.property,
+  summary: 'Property attributes from county records',
+  description: `This API endpoint returns property attributes sourced from county public record. Availability and format of individual fields may vary by county. The API returns details about the most recent assessment, air conditioning, attic, basement, building area, building condition score, building quality score, construction type, exterior walls, fireplace, full bath count, garage parking of cars, garage type parking, heating, number of buildings, number of stories, number of bedrooms, number of units, partial bath count, pool, property type, roof cover, roof type, sewer, site area acres, style, subdivision, total bath count, water, year built, zoning, APN, assessment year, tax amount, tax year, and total assessed value.`,
+  schema: {
+    type: 'object',
+    properties: {
+      property: {
+        type: 'object',
+        properties: {
+          apn: {
+            type: 'string',
+            description:
+              "Assessor's Parcel Number or Parcel Identification Number",
+          },
+          site_area_acres: {
+            type: 'number',
+            description: 'Total area of the land in acres',
+          },
+          no_of_buildings: {
+            type: 'number',
+            description: 'Number of buildings',
+          },
+          no_of_stories: {
+            type: 'number',
+            description: 'Number of floors',
+          },
+          number_of_units: {
+            type: 'number',
+            description: 'Number of units',
+          },
+          pool: {
+            type: 'boolean',
+            description: 'Whether the property has a pool',
+          },
+          property_type: {
+            type: 'string',
+            description: 'Type of property',
+            enum: [
+              'Single Family Residential',
+              'Townhouse',
+              'Condominium',
+              'Manufactured/Mobile Home',
+              'Multi-Family',
+              'Land',
+              'Timeshare',
+              'Commercial',
+              'Other',
+            ],
+          },
+          subdivision: {
+            type: 'string',
+            description: 'Subdivision as reported to the assessor',
+          },
+          year_built: {
+            type: 'number',
+            description: 'Year the property was constructed',
+          },
+          zoning: {
+            type: 'string',
+            description: 'County-specific property zoning',
+          },
+        },
+      },
+      assessment: {
+        type: 'object',
+        properties: {
+          assessment_year: {
+            type: 'number',
+            description: 'Year the assessment was conducted',
+          },
+          tax_amount: {
+            type: 'number',
+            description: 'Amount in dollars of tax owed on the property',
+          },
+          tax_year: {
+            type: 'number',
+            description: 'Tax year for which the assessment applies',
+          },
+          total_assessed_value: {
+            type: 'number',
+            description:
+              'The total current assessed value of both land and improvements (before exemptions, if any) as reported on the county tax/assessment roll.',
+          },
+        },
+      },
+      air_conditioning: {
+        type: 'string',
+        description: 'Yes if home has air conditioning. No otherwise.',
+      },
+      attic: {
+        type: 'string',
+        description: 'True if home has attic. False otherwise.',
+      },
+      basement: {
+        type: 'string',
+        description:
+          'Description of basement. One of [Basement (not specified), Daylight, Full, Daylight, Partial, Full Basement, Improved Basement (Finished), No Basement, Partial Basement, Unfinished Basement]',
+        enum: [
+          'Basement (not specified)',
+          'Daylight',
+          'Full',
+          'Daylight',
+          'Partial',
+          'Full Basement',
+          'Improved Basement (Finished)',
+          'No Basement',
+          'Partial Basement',
+          'Unfinished Basement',
+        ],
+      },
+      building_area_sq_ft: {
+        type: 'number',
+        description: 'Area of building(s) in square feet',
+      },
+      building_condition_score: {
+        type: 'number',
+        description:
+          'Possible building condition score. Values range from 1 to 5. 5 = Excellent, 4 = Good, 3 = Fair, 2 = Poor, 1 = Unsound',
+      },
+      building_quality_score: {
+        type: 'number',
+        description:
+          'Possible building quality score. Values range from 1 to 5. 5 = A grade, 4 = B grade, 3 = C grade, 2 = D grade, 1 = E grade',
+      },
+      construction_type: {
+        type: 'string',
+        description:
+          'Primary construction material. One of [Adobe, Brick, Concrete, Concrete Block, Dome, Frame, Heavy, Light, Log, Manufactured, Other, Masonry, Metal, Steel, Stone, Tilt-up (pre-cast concrete), Wood, Mixed]',
+        enum: [
+          'Adobe',
+          'Brick',
+          'Concrete',
+          'Concrete Block',
+          'Dome',
+          'Frame',
+          'Heavy',
+          'Light',
+          'Log',
+          'Manufactured',
+          'Other',
+          'Masonry',
+          'Metal',
+          'Steel',
+          'Stone',
+          'Tilt-up (pre-cast concrete)',
+          'Wood',
+          'Mixed',
+        ],
+      },
+      exterior_walls: {
+        type: 'string',
+        description:
+          'Type of exterior walls. One of [Adobe, Asbestos shingle, Block, Brick, Brick veneer, Combination, Composition, Concrete, Concrete Block, Glass, Log, Marble, Masonry, Metal, Other, Rock, Stone, Shingle (Not Wood), Siding (Alum/Vinyl), Stucco, Tile, Tilt-up (pre-cast concrete), Wood, Wood Shingle, Wood Siding]',
+        enum: [
+          'Adobe',
+          'Asbestos shingle',
+          'Block',
+          'Brick',
+          'Brick veneer',
+          'Combination',
+          'Composition',
+          'Concrete',
+          'Concrete Block',
+          'Glass',
+          'Log',
+          'Marble',
+          'Masonry',
+          'Metal',
+          'Other',
+          'Rock',
+          'Stone',
+          'Shingle (Not Wood)',
+          'Siding (Alum/Vinyl)',
+          'Stucco',
+          'Tile',
+          'Tilt-up (pre-cast concrete)',
+          'Wood',
+          'Wood Shingle',
+          'Wood Siding',
+        ],
+      },
+      fireplace: {
+        type: 'string',
+        description: 'True if home has fireplace. False otherwise.',
+      },
+      full_bath_count: {
+        type: 'number',
+        description: 'Count of full bathrooms as recorded by the assessor',
+      },
+      garage_parking_of_cars: {
+        type: 'number',
+        description: 'Number of cars that can be parked in garage areas',
+      },
+      garage_type_parking: {
+        type: 'string',
+        description:
+          'Type of parking area. One of [Attached Garage, Built-in, Carport, Covered, Detached Garage, Garage, Mixed, None, Offsite, Open, Parking Lot, Parking Structure, Paved/Surfaced, Pole, Ramp, Tuckunder, Underground/Basement, Unimproved, Yes]',
+        enum: [
+          'Attached Garage',
+          'Built-in',
+          'Carport',
+          'Covered',
+          'Detached Garage',
+          'Garage',
+          'Mixed',
+          'None',
+          'Offsite',
+          'Open',
+          'Parking Lot',
+          'Parking Structure',
+          'Paved/Surfaced',
+          'Pole',
+          'Ramp',
+          'Tuckunder',
+          'Underground/Basement',
+          'Unimproved',
+          'Yes',
+        ],
+      },
+      heating: {
+        type: 'string',
+        description:
+          'Type of heating unit. One of [Baseboard, Central, Coal, Convection, Electric, Floor/Wall, Forced air unit, Gas, Geo-thermal, Gravity, Heat Pump, Hot Water, None, Oil, Other, Partial, Propane, Radiant, Solar, Space/Suspended, Steam, Vent, Wood Burning, Yes, Zone]',
+        enum: [
+          'Baseboard',
+          'Central',
+          'Coal',
+          'Convection',
+          'Electric',
+          'Floor/Wall',
+          'Forced air unit',
+          'Gas',
+          'Geo-thermal',
+          'Gravity',
+          'Heat Pump',
+          'Hot Water',
+          'None',
+          'Oil',
+          'Other',
+          'Partial',
+          'Propane',
+          'Radiant',
+          'Solar',
+          'Space/Suspended',
+          'Steam',
+          'Vent',
+          'Wood Burning',
+          'Yes',
+          'Zone',
+        ],
+      },
+      no_of_buildings: {
+        type: 'number',
+        description: 'Number of buildings',
+      },
+      no_of_stories: {
+        type: 'number',
+        description: 'Number of floors',
+      },
+      number_of_bedrooms: {
+        type: 'number',
+        description: 'Number of bedrooms',
+      },
+      number_of_units: {
+        type: 'number',
+        description: 'Number of units',
+      },
+      partial_bath_count: {
+        type: 'number',
+        description:
+          'Partial bathroom count, if provided by the county assessor',
+      },
+      pool: {
+        type: 'boolean',
+        description: 'Whether the property has a pool',
+      },
+      property_type: {
+        type: 'string',
+        description:
+          'Type of property. One of [Single Family Residential, Townhouse, Condominium, Manufactured/Mobile Home, Multi-Family, Land, Timeshare, Commercial, Other]',
+        enum: [
+          'Single Family Residential',
+          'Townhouse',
+          'Condominium',
+          'Manufactured/Mobile Home',
+          'Multi-Family',
+          'Land',
+          'Timeshare',
+          'Commercial',
+          'Other',
+        ],
+      },
+      roof_cover: {
+        type: 'string',
+        description:
+          'Material the roof is made of. One of [Aluminum, Asbestos, Asphalt, Bermuda, Built-up, Composition Shingle, Concrete, Fiberglass, Gravel/Rock, Gypsum, Masonite/ Cement Shake, Metal, Other, Roll Composition, Slate, Steel, Shingle (Not Wood), Tar & Gravel, Tile, Urethane, Wood, Wood Shake/ Shingles]',
+        enum: [
+          'Aluminum',
+          'Asbestos',
+          'Asphalt',
+          'Bermuda',
+          'Built-up',
+          'Composition Shingle',
+          'Concrete',
+          'Fiberglass',
+          'Gravel/Rock',
+          'Gypsum',
+          'Masonite/ Cement Shake',
+          'Metal',
+          'Other',
+          'Roll Composition',
+          'Slate',
+          'Steel',
+          'Shingle (Not Wood)',
+          'Tar & Gravel',
+          'Tile',
+          'Urethane',
+          'Wood',
+          'Wood Shake/ Shingles',
+        ],
+      },
+      roof_type: {
+        type: 'string',
+        description:
+          'Roof structure. One of [Bowstring Truss, Dome,Flat, Gable, Gable or Hip, Gambrel, Hip, Irr/Cathedral, Mansard, Prestress Concrete, Reinforced Concrete, Rigid frm bar JT, Sawtooth, Shed, Steel frm/truss, Wood Truss]',
+        enum: [
+          'Bowstring Truss',
+          'Dome',
+          'Flat',
+          'Gable',
+          'Gable or Hip',
+          'Gambrel',
+          'Hip',
+          'Irr/Cathedral',
+          'Mansard',
+          'Prestress Concrete',
+          'Reinforced Concrete',
+          'Rigid frm bar JT',
+          'Sawtooth',
+          'Shed',
+          'Steel frm/truss',
+          'Wood Truss',
+        ],
+      },
+      sewer: {
+        type: 'string',
+        description:
+          'Sewage connection. One of [Municipal, None, Storm, Septic, Yes]',
+        enum: ['Municipal', 'None', 'Storm', 'Septic', 'Yes'],
+      },
+      site_area_acres: {
+        type: 'number',
+        description: 'Total area of the land in acres',
+      },
+      style: {
+        type: 'string',
+        description:
+          'Property architectural style. One of [A-Frame, Bungalow, Cape Cod, Colonial, Contemporary, Conventional, Cottage, Custom, Dome, English, French Provincial, Georgian, High-rise, Historical Log Cabin/Rustic, Mansion, Mediterranean, Modern, Other, Prefab,Modular, Raised Ranch, RanchRambler, Spanish, Traditional, Tudor, UnfinishedUnder Construction, Victorian]',
+        enum: [
+          'A-Frame',
+          'Bungalow',
+          'Cape Cod',
+          'Colonial',
+          'Contemporary',
+          'Conventional',
+          'Cottage',
+          'Custom',
+          'Dome',
+          'English',
+          'French Provincial',
+          'Georgian',
+          'High-rise',
+          'Historical Log Cabin/Rustic',
+          'Mansion',
+          'Mediterranean',
+          'Modern',
+          'Other',
+          'Prefab,Modular',
+          'Raised Ranch',
+          'RanchRambler',
+          'Spanish',
+          'Traditional',
+          'Tudor',
+          'Unfinished\\Under Construction',
+          'Victorian',
+        ],
+      },
+      subdivision: {
+        type: 'string',
+        description: 'Subdivision as reported to the assessor',
+      },
+      total_bath_count: {
+        type: 'number',
+        description: 'Total bathroom count as recorded by the assessor',
+      },
+      water: {
+        type: 'string',
+        description:
+          'Water connection. One of [Cistern, Municipal, None, Spring, Well]',
+        enum: ['Cistern', 'Municipal', 'None', 'Spring', 'Well'],
+      },
+      year_built: {
+        type: 'number',
+        description: 'Year the property was constructed',
+      },
+      zoning: {
+        type: 'string',
+        description: 'County-specific property zoning',
+      },
+      apn: {
+        type: 'string',
+        description: "Assessor's Parcel Number or Parcel Identification Number",
+      },
+      assessment_year: {
+        type: 'number',
+        description: 'Year the assessment was conducted',
+      },
+      tax_amount: {
+        type: 'number',
+        description: 'Amount in dollars of tax owed on the property',
+      },
+      tax_year: {
+        type: 'number',
+        description: 'Tax year for which the assessment applies',
+      },
+      total_assessed_value: {
+        type: 'number',
+        description:
+          'The total current assessed value of both land and improvements (before exemptions, if any) as reported on the county tax/assessment roll.',
+      },
+    },
+  },
+};
