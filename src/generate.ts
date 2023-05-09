@@ -131,13 +131,13 @@ function generatePath({
   };
 
   paths[`/v${version}/${level}/${target}`] = {
+    parameters: [...requireSchemaForAllQueryParams(customParams)],
     get: {
       summary,
       description,
       tags: [tag],
       parameters: [
         ...transformSchemaToQueryParams(REQUEST_LEVEL_SCHEMA[level]),
-        ...requireSchemaForAllQueryParams(customParams),
       ],
       responses,
     },
